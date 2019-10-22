@@ -1,0 +1,10 @@
+{
+    "author": "Whistle Master & Adde88",
+    "description": "(FW2.6.0 or higher) Perform man-in-the-middle attacks using SSLsplit",
+    "devices": [
+        "nano",
+        "tetra"
+    ],
+    "title": "SSLsplit-NG",
+    "version": "1.6"
+}

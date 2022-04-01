@@ -9,18 +9,16 @@
 touch /tmp/SSLsplitNG.progress
 
 mkdir -p /tmp/SSLsplitNG
-wget https://github.com/adde88/openwrt-useful-tools/tree/packages-19.07 -P /tmp/SSLsplitNG
-SSLSPLIT=`grep -F "sslsplit_" /tmp/SSLsplitNG/packages-19.07 | awk {'print $5'} | awk -F'"' {'print $2'} | grep mips_24kc`
 
 cd /tmp
 opkg update
-wget "https://github.com/adde88/openwrt-useful-tools/raw/packages-19.07/"$SSLSPLIT""
+wget "https://github.com/adde88/openwrt-useful-tools/raw/packages-19.07_mkvi/sslsplit_0.5.5-3_mips_24kc.ipk" -P /tmp/SSLsplitNG
 
 if [ "$1" = "install" ]; then
   if [ "$2" = "internal" ]; then
-  	opkg install openssl-util libevent2-7 libevent2-core7 libevent2-extra7 libevent2-openssl7 libevent2-pthreads7 "$SSLSPLIT"
+  	opkg install openssl-util libevent2-7 libevent2-core7 libevent2-extra7 libevent2-openssl7 libevent2-pthreads7 libpcap /tmp/SSLsplitNG/sslsplit_0.5.5-3_mips_24kc.ipk
   elif [ "$2" = "sd" ]; then
-	opkg install openssl-util libevent2-7 libevent2-core7 libevent2-extra7 libevent2-openssl7 libevent2-pthreads7 "$SSLSPLIT" --dest sd
+	opkg install openssl-util libevent2-7 libevent2-core7 libevent2-extra7 libevent2-openssl7 libevent2-pthreads7 libpcap /tmp/SSLsplitNG/sslsplit_0.5.5-3_mips_24kc.ipk --dest sd
   fi
 
 	openssl genrsa -out /pineapple/modules/SSLsplitNG/cert/certificate.key 1024
